@@ -1,0 +1,187 @@
+openapi: 3.1.0
+info:
+  title: weavix REST Channels & Messaging User Management API
+  version: '1.0'
+  x-apievangelist-generated: '2026-07-21'
+  x-apievangelist-method: generated
+  x-apievangelist-source: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  description: 'The weavix REST API lets administrators automate actions in the weavix "Internet of Workers" frontline communication platform from outside the weavix system: manage crafts, sites (facilities), geofences, permission groups, and users; send messages to admin-defined channels and individual users; retrieve message history and form submissions; and trigger mass alerts. Faithfully modeled by API Evangelist from weavix''s published REST API documentation (no vendor-published OpenAPI exists as of 2026-07-21). Authentication uses an account API key passed as an Authorization token.'
+  contact:
+    name: weavix Support
+    email: help@weavix.com
+    url: https://help.weavix.com/hc/en-us
+servers:
+- url: https://api.weavix.com
+  description: weavix production API
+security:
+- apiKeyAuth: []
+tags:
+- name: User Management
+paths:
+  /core/people/names:
+    get:
+      operationId: listUsers
+      tags:
+      - User Management
+      summary: Get a list of all users on the account
+      description: Returns a list of all the users on your account. Use it to obtain the userId for a specific user.
+      responses:
+        '200':
+          description: A list of users
+  /v1/core/people:
+    get:
+      operationId: listPeople
+      tags:
+      - User Management
+      summary: List people (v1)
+      description: Versioned (v1) listing of people on the account, as shown in the weavix getting-started example.
+      responses:
+        '200':
+          description: A list of people
+  /core/users/{id}:
+    get:
+      operationId: getUser
+      tags:
+      - User Management
+      summary: Get a user
+      description: Gets the user profile information of the specified user.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The user id of the user you wish to view.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The user profile
+  /core/people/{id}:
+    delete:
+      operationId: deleteUser
+      tags:
+      - User Management
+      summary: Delete a user
+      description: Deletes the specified user from your account.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The user id of the user you wish to delete.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User deleted
+    put:
+      operationId: updateUser
+      tags:
+      - User Management
+      summary: Update a user
+      description: Updates an existing user on your account with the provided information. Only the keys provided are updated, so you can update a single field.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The user id of the user you wish to edit.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdate'
+      responses:
+        '200':
+          description: User updated
+  /core/people/new-user:
+    post:
+      operationId: createUser
+      tags:
+      - User Management
+      summary: Add a user
+      description: Creates a new user on your account with all the provided information. The user is created but must still be activated after creation. Required fields are firstName, lastName, group, and facilities (unless the user is a global-admin).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+      responses:
+        '200':
+          description: User created (pending activation)
+components:
+  schemas:
+    UserUpdate:
+      type: object
+      properties:
+        folderId:
+          type: string
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        group:
+          type: string
+        sites:
+          type: array
+          items:
+            type: object
+            properties:
+              facilityId:
+                type: string
+              facilityGroup:
+                type: string
+        crafts:
+          type: array
+          items:
+            type: string
+        locale:
+          type: string
+          default: en
+    UserCreate:
+      type: object
+      required:
+      - firstName
+      - lastName
+      - group
+      properties:
+        folderId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        group:
+          type: string
+          description: 'Global admin: "global-admin" or "none".'
+        facilities:
+          type: array
+          items:
+            type: object
+            properties:
+              facilityId:
+                type: string
+              facilityGroup:
+                type: string
+                description: A permission group id, "global-admin", or "none".
+        crafts:
+          type: array
+          items:
+            type: string
+        locale:
+          type: string
+          description: Two-digit ISO 639 default language code. Defaults to "en".
+          default: en
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Account API key passed as the Authorization request header. Keys are created in the weavix Console under Configuration -> API Keys (Secret + Authorization Token). Requests without a valid token receive 401.

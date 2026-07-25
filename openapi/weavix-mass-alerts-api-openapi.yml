@@ -1,0 +1,104 @@
+openapi: 3.1.0
+info:
+  title: weavix REST Channels & Messaging Mass Alerts API
+  version: '1.0'
+  x-apievangelist-generated: '2026-07-21'
+  x-apievangelist-method: generated
+  x-apievangelist-source: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  description: 'The weavix REST API lets administrators automate actions in the weavix "Internet of Workers" frontline communication platform from outside the weavix system: manage crafts, sites (facilities), geofences, permission groups, and users; send messages to admin-defined channels and individual users; retrieve message history and form submissions; and trigger mass alerts. Faithfully modeled by API Evangelist from weavix''s published REST API documentation (no vendor-published OpenAPI exists as of 2026-07-21). Authentication uses an account API key passed as an Authorization token.'
+  contact:
+    name: weavix Support
+    email: help@weavix.com
+    url: https://help.weavix.com/hc/en-us
+servers:
+- url: https://api.weavix.com
+  description: weavix production API
+security:
+- apiKeyAuth: []
+tags:
+- name: Mass Alerts
+paths:
+  /core/alert-types:
+    get:
+      operationId: listAlertTypes
+      tags:
+      - Mass Alerts
+      summary: Get the types of alerts available
+      description: Returns a list of all available alert types. You need the id of an alert type to trigger it.
+      responses:
+        '200':
+          description: A list of alert types
+  /track/facility-alerts/{facilityId}:
+    post:
+      operationId: sendMassAlert
+      tags:
+      - Mass Alerts
+      summary: Send a mass alert
+      description: Sends a mass alert for a facility. The message is read aloud on walts and translated into each user's set language. Optionally target by crafts, on-site presence, specific facilities, or geofences.
+      parameters:
+      - name: facilityId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - alertTypeId
+              - message
+              properties:
+                alertTypeId:
+                  type: string
+                  description: The id of the alert type to invoke.
+                crafts:
+                  type: array
+                  description: Optional crafts to target. Users only receive the alert if they belong to a selected craft.
+                  items:
+                    type: string
+                message:
+                  type: string
+                  description: The text to send in the alert (read aloud and translated on walts).
+                location:
+                  type: object
+                  properties:
+                    currentlyIn:
+                      type: boolean
+                      description: If true, only send to users currently on the selected site.
+                    facilityIds:
+                      type: array
+                      items:
+                        type: string
+                    geofenceIds:
+                      type: array
+                      description: Optional geofences to target; only users reporting a location in one of these geofences are alerted.
+                      items:
+                        type: string
+      responses:
+        '200':
+          description: Mass alert sent
+    get:
+      operationId: listFacilityAlerts
+      tags:
+      - Mass Alerts
+      summary: Get history of all alerts at a site
+      description: Returns a list of all the alerts sent for the specified site.
+      parameters:
+      - name: facilityId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Alert history for the site
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Account API key passed as the Authorization request header. Keys are created in the weavix Console under Configuration -> API Keys (Secret + Authorization Token). Requests without a valid token receive 401.

@@ -1,0 +1,168 @@
+openapi: 3.1.0
+info:
+  title: weavix REST Channels & Messaging API
+  version: '1.0'
+  x-apievangelist-generated: '2026-07-21'
+  x-apievangelist-method: generated
+  x-apievangelist-source: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  description: 'The weavix REST API lets administrators automate actions in the weavix "Internet of Workers" frontline communication platform from outside the weavix system: manage crafts, sites (facilities), geofences, permission groups, and users; send messages to admin-defined channels and individual users; retrieve message history and form submissions; and trigger mass alerts. Faithfully modeled by API Evangelist from weavix''s published REST API documentation (no vendor-published OpenAPI exists as of 2026-07-21). Authentication uses an account API key passed as an Authorization token.'
+  contact:
+    name: weavix Support
+    email: help@weavix.com
+    url: https://help.weavix.com/hc/en-us
+servers:
+- url: https://api.weavix.com
+  description: weavix production API
+security:
+- apiKeyAuth: []
+tags:
+- name: Channels & Messaging
+paths:
+  /core/channels:
+    get:
+      operationId: listChannels
+      tags:
+      - Channels & Messaging
+      summary: Get a list of all admin-defined channels
+      description: Returns a list of all the admin-defined channels on your account. Use it to obtain the channelId for a specific channel.
+      responses:
+        '200':
+          description: A list of admin-defined channels
+  /api/{channelId}/message:
+    post:
+      operationId: sendChannelMessage
+      tags:
+      - Channels & Messaging
+      summary: Send a message to an admin-defined channel
+      description: Sends a message to a specific channel that appears to a user as a system message.
+      parameters:
+      - name: channelId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - message
+              properties:
+                message:
+                  type: string
+                  description: The message to send to the channel (required).
+                senderName:
+                  type: string
+                  description: Display name for the sender. Defaults to "weavix Integrations" if omitted.
+                readAloud:
+                  type: boolean
+                  description: If true, the message is read aloud when received on a walt.
+      responses:
+        '200':
+          description: Message sent
+  /external/channels/{channelId}/messages/search:
+    post:
+      operationId: searchChannelMessages
+      tags:
+      - Channels & Messaging
+      summary: Get the messages from a channel
+      description: Retrieves messages sent to a channel within the provided parameters. Supports cursor pagination via the pageSize and next fields.
+      parameters:
+      - name: channelId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fromDate:
+                  type: string
+                  format: date-time
+                  description: Start of the timeframe (UTC, yyyy-mm-ddThh:mm:ssZ).
+                toDate:
+                  type: string
+                  format: date-time
+                  description: End of the timeframe (UTC, yyyy-mm-ddThh:mm:ssZ).
+                contentTypes:
+                  type: array
+                  description: Message types to pull. One or more of audio, image, video, file, link.
+                  items:
+                    type: string
+                    enum:
+                    - audio
+                    - image
+                    - video
+                    - file
+                    - link
+                pageSize:
+                  type: integer
+                  description: Number of messages to return. Optional; default and maximum 1000.
+                  default: 1000
+                  maximum: 1000
+                next:
+                  type: string
+                  description: Pagination cursor returned by a previous response to fetch the next page.
+      responses:
+        '200':
+          description: A page of messages, with an optional next cursor
+  /api/admin/channel-message:
+    post:
+      operationId: sendUserMessage
+      tags:
+      - Channels & Messaging
+      summary: Send a message to an individual user
+      description: Sends a message to a specific user. A channel is created with the user and the message appears from the specified sender name.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - userId
+              - message
+              properties:
+                userId:
+                  type: string
+                  description: The id of the user to send the message to.
+                channelName:
+                  type: string
+                  description: The name of the channel created with the user.
+                message:
+                  type: string
+                  description: The message to send (required).
+                senderName:
+                  type: string
+                  description: Display name for the sender. Defaults to "weavix Integrations".
+                messageLanguage:
+                  type: string
+                  description: Two-digit ISO 639 language code for the message language.
+                readAloud:
+                  type: boolean
+                  description: If true, the message is read aloud when received on a walt.
+                mediaUrl:
+                  type: string
+                  description: Optional media to include with the message.
+                channelImageUrl:
+                  type: string
+                  description: Optional image used as the message profile avatar.
+                responseUrl:
+                  type: string
+                  description: Optional callback URL. If provided, when the user responds the transcript of their response is POSTed to this URL.
+      responses:
+        '200':
+          description: Message sent
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Account API key passed as the Authorization request header. Keys are created in the weavix Console under Configuration -> API Keys (Secret + Authorization Token). Requests without a valid token receive 401.

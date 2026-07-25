@@ -1,0 +1,43 @@
+openapi: 3.1.0
+info:
+  title: weavix REST Channels & Messaging Permission Groups API
+  version: '1.0'
+  x-apievangelist-generated: '2026-07-21'
+  x-apievangelist-method: generated
+  x-apievangelist-source: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  description: 'The weavix REST API lets administrators automate actions in the weavix "Internet of Workers" frontline communication platform from outside the weavix system: manage crafts, sites (facilities), geofences, permission groups, and users; send messages to admin-defined channels and individual users; retrieve message history and form submissions; and trigger mass alerts. Faithfully modeled by API Evangelist from weavix''s published REST API documentation (no vendor-published OpenAPI exists as of 2026-07-21). Authentication uses an account API key passed as an Authorization token.'
+  contact:
+    name: weavix Support
+    email: help@weavix.com
+    url: https://help.weavix.com/hc/en-us
+servers:
+- url: https://api.weavix.com
+  description: weavix production API
+security:
+- apiKeyAuth: []
+tags:
+- name: Permission Groups
+paths:
+  /core/groups/{facilityId}:
+    get:
+      operationId: listPermissionGroups
+      tags:
+      - Permission Groups
+      summary: Get a list of all permission groups for a site
+      description: Returns a list of all the permission groups on the specified site. Use it to obtain the groupId for a specific permission group.
+      parameters:
+      - name: facilityId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of permission groups
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Account API key passed as the Authorization request header. Keys are created in the weavix Console under Configuration -> API Keys (Secret + Authorization Token). Requests without a valid token receive 401.
