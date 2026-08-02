@@ -1,0 +1,16 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/weavix-rest-openapi.yml
+skills:
+- file: weavix-sync-users.md
+  name: Sync workforce users into weavix
+  api: openapi/weavix-rest-openapi.yml
+  operations: [listSites, listPermissionGroups, listCrafts, listUsers, createUser, updateUser, deleteUser]
+- file: weavix-broadcast-mass-alert.md
+  name: Broadcast a targeted mass alert
+  api: openapi/weavix-rest-openapi.yml
+  operations: [listSites, listAlertTypes, sendMassAlert, listFacilityAlerts]
+- file: weavix-message-and-retrieve.md
+  name: Send messages and retrieve channel history
+  api: openapi/weavix-rest-openapi.yml
+  operations: [listChannels, listUsers, sendChannelMessage, sendUserMessage, searchChannelMessages]

@@ -1,0 +1,28 @@
+{
+  "provider": "weavix",
+  "sources": [
+    "weavix-channels-messaging-api-openapi.yml",
+    "weavix-crafts-api-openapi.yml",
+    "weavix-forms-api-openapi.yml",
+    "weavix-geofences-api-openapi.yml",
+    "weavix-mass-alerts-api-openapi.yml",
+    "weavix-permission-groups-api-openapi.yml",
+    "weavix-sites-api-openapi.yml",
+    "weavix-user-management-api-openapi.yml"
+  ],
+  "outputs": [
+    "weavix-channels-messaging-api-openapi.yml",
+    "weavix-crafts-api-openapi.yml",
+    "weavix-forms-api-openapi.yml",
+    "weavix-geofences-api-openapi.yml",
+    "weavix-mass-alerts-api-openapi.yml",
+    "weavix-permission-groups-api-openapi.yml",
+    "weavix-sites-api-openapi.yml",
+    "weavix-user-management-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

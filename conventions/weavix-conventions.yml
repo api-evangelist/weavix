@@ -1,0 +1,75 @@
+generated: '2026-07-21'
+method: searched
+source: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+docs: https://help.weavix.com/hc/en-us/articles/45825355414669-Weavix-API-s
+summary: >-
+  Cross-cutting request/response conventions for the weavix REST API, captured
+  from the published documentation and derived from the OpenAPI.
+authentication:
+  style: api-key
+  location: header
+  header: Authorization
+  scheme: raw-token
+  notes: Account API key (Authorization Token) sent in the Authorization header; no Bearer prefix.
+  ref: authentication/weavix-authentication.yml
+base_url: https://api.weavix.com
+media_type: application/json
+pagination:
+  supported: true
+  style: cursor
+  applies_to:
+  - POST /external/channels/{channelId}/messages/search
+  request_params:
+    page_size: pageSize
+    cursor: next
+  response_fields:
+    cursor: next
+  page_size_default: 1000
+  page_size_max: 1000
+  notes: >-
+    Message search returns a `next` cursor when more results exist than the
+    requested pageSize; pass it back on the next call to page through results.
+idempotency:
+  supported: false
+  notes: No idempotency-key header or parameter is documented for the weavix REST API.
+versioning:
+  scheme: uri-path
+  observed_prefixes:
+  - /core
+  - /track
+  - /external
+  - /api
+  - /v1/core
+  notes: >-
+    Most endpoints are unversioned path prefixes (/core, /track, /external,
+    /api); newer endpoints appear under a /v1/core prefix (people, forms).
+  ref: lifecycle/weavix-lifecycle.yml
+localization:
+  parameter: locale / messageLanguage
+  format: ISO 639 two-letter language code
+  default: en
+  notes: >-
+    Messages and user defaults use two-digit ISO 639 language codes; weavix
+    provides real-time AI translation across 40+ supported languages.
+message_content_types:
+- audio
+- image
+- video
+- file
+- link
+callbacks:
+  response_url:
+    field: responseUrl
+    on: POST /api/admin/channel-message
+    behavior: >-
+      When a responseUrl is supplied, a user's reply transcript is POSTed to
+      that URL, acting as a per-message webhook callback.
+    ref: asyncapi/weavix-webhooks.yml
+error_handling:
+  transport: HTTP status codes
+  observed:
+  - 401 Unauthorized (missing/invalid Authorization token)
+  ref: errors/weavix-problem-types.yml
+rate_limiting:
+  documented: false
+  notes: No public rate-limit headers or quotas are documented.

@@ -1,0 +1,25 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for weavix REST API
+  version: 1.0.0
+extends: openapi/weavix-rest-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-rating: 3
+    x-apievangelist-notes: >-
+      Faithfully modeled by API Evangelist from weavix's published REST API
+      documentation; no vendor OpenAPI is published. Auth is a static account
+      API key in the Authorization header.
+- target: $.info
+  update:
+    x-api-evangelist-artifacts:
+      authentication: authentication/weavix-authentication.yml
+      conventions: conventions/weavix-conventions.yml
+      errors: errors/weavix-problem-types.yml
+      data-model: data-model/weavix-data-model.yml
+      webhooks: asyncapi/weavix-webhooks.yml
+- target: $.tags
+  update:
+    - name: Internet of Workers
+      description: weavix frontline communication platform domain.

@@ -1,0 +1,109 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/weavix-rest-openapi.yml
+notes: >-
+  Entity-relationship graph derived from the weavix REST API operations and the
+  id-reference fields they document (facilityId, groupId, craftId, folderId,
+  userId, channelId, alertTypeId, formId, geofenceId).
+entities:
+- name: Site
+  aka: Facility
+  id_field: facilityId
+  source_operations: [listSites]
+- name: Geofence
+  id_field: geofenceId
+  belongs_to: Site
+  via: facilityId
+  source_operations: [listGeofences]
+- name: PermissionGroup
+  id_field: groupId
+  belongs_to: Site
+  via: facilityId
+  source_operations: [listPermissionGroups]
+- name: Craft
+  id_field: craftId
+  source_operations: [listCrafts, createCraft]
+- name: Folder
+  id_field: folderId
+  source_operations: [createUser]
+- name: User
+  aka: Person
+  id_field: userId
+  source_operations: [listUsers, getUser, createUser, updateUser, deleteUser]
+- name: Channel
+  id_field: channelId
+  note: Admin-defined channels; per-user channels are created on demand when messaging a user.
+  source_operations: [listChannels, sendChannelMessage, searchChannelMessages, sendUserMessage]
+- name: Message
+  belongs_to: Channel
+  via: channelId
+  source_operations: [sendChannelMessage, searchChannelMessages, sendUserMessage]
+- name: Form
+  id_field: formId
+  source_operations: [getFormSubmissions]
+- name: FormSubmission
+  belongs_to: Form
+  via: formId
+  references: User
+  source_operations: [getFormSubmissions]
+- name: AlertType
+  id_field: alertTypeId
+  source_operations: [listAlertTypes]
+- name: FacilityAlert
+  belongs_to: Site
+  via: facilityId
+  references: [AlertType, Craft, Geofence]
+  source_operations: [sendMassAlert, listFacilityAlerts]
+relationships:
+- from: Geofence
+  to: Site
+  type: belongs_to
+  via: facilityId
+- from: PermissionGroup
+  to: Site
+  type: belongs_to
+  via: facilityId
+- from: User
+  to: Site
+  type: has_many
+  via: facilities[].facilityId
+- from: User
+  to: PermissionGroup
+  type: belongs_to
+  via: facilities[].facilityGroup
+- from: User
+  to: Craft
+  type: has_many
+  via: crafts[]
+- from: User
+  to: Folder
+  type: belongs_to
+  via: folderId
+- from: Message
+  to: Channel
+  type: belongs_to
+  via: channelId
+- from: FormSubmission
+  to: Form
+  type: belongs_to
+  via: formId
+- from: FormSubmission
+  to: User
+  type: references
+  via: userId
+- from: FacilityAlert
+  to: Site
+  type: belongs_to
+  via: facilityId
+- from: FacilityAlert
+  to: AlertType
+  type: references
+  via: alertTypeId
+- from: FacilityAlert
+  to: Craft
+  type: references
+  via: crafts[]
+- from: FacilityAlert
+  to: Geofence
+  type: references
+  via: location.geofenceIds[]

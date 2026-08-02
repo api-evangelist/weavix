@@ -1,7 +1,21 @@
 aid: weavix
 name: Weavix
-description: Weavix is a company surfaced as a portfolio company of insight-partners and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  weavix is the "Internet of Workers" frontline communication and workforce
+  productivity platform, built around walt, a purpose-built smart radio for
+  industrial deskless workers. It replaces traditional two-way radios with a
+  connected system offering push-to-talk voice, picture and video messaging,
+  real-time AI language translation across 40+ languages, man-down detection,
+  location tracking, geofencing, mass alerts, and searchable conversation
+  capture, running over existing Wi-Fi or LTE without FCC licensing. weavix
+  serves manufacturing, construction, oil and gas, food and beverage,
+  warehousing, logistics, aviation and other industrial sectors. Its public
+  REST API lets administrators automate the platform from outside systems:
+  sync users from HR/workforce systems, manage crafts, sites, geofences and
+  permission groups, send messages to channels and individual users, pull
+  message history and form submissions, and trigger mass alerts. weavix is
+  headquartered in Wichita, Kansas and is backed by Insight Partners and Koch
+  Disruptive Technologies.
 url: https://raw.githubusercontent.com/api-evangelist/weavix/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,14 +23,222 @@ x-backed-by:
 - insight-partners
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
+- Communication
+- Frontline Workers
+- Workforce Management
+- Messaging
+- Push To Talk
+- Industrial
+- Internet of Things
+- Location Tracking
+- Alerts
 - Company
-apis: []
+image: https://weavix.com/wp-content/uploads/2023/03/weavix-logo.png
+apis:
+- aid: weavix:weavix-channels-messaging-api
+  name: Weavix Channels & Messaging API
+  description: The Channels & Messaging API from Weavix — 4 operation(s) for channels & messaging.
+  humanURL: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  baseURL: https://api.weavix.com
+  tags:
+  - Channels & Messaging
+  properties:
+  - type: OpenAPI
+    url: openapi/weavix-channels-messaging-api-openapi.yml
+  - type: Documentation
+    url: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  - type: APIReference
+    url: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  - type: GettingStarted
+    url: https://help.weavix.com/hc/en-us/articles/45825355414669-Weavix-API-s
+- aid: weavix:weavix-crafts-api
+  name: Weavix Crafts API
+  description: The Crafts API from Weavix — 1 operation(s) for crafts.
+  humanURL: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  baseURL: https://api.weavix.com
+  tags:
+  - Crafts
+  properties:
+  - type: OpenAPI
+    url: openapi/weavix-crafts-api-openapi.yml
+  - type: Documentation
+    url: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  - type: APIReference
+    url: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  - type: GettingStarted
+    url: https://help.weavix.com/hc/en-us/articles/45825355414669-Weavix-API-s
+- aid: weavix:weavix-forms-api
+  name: Weavix Forms API
+  description: The Forms API from Weavix — 1 operation(s) for forms.
+  humanURL: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  baseURL: https://api.weavix.com
+  tags:
+  - Forms
+  properties:
+  - type: OpenAPI
+    url: openapi/weavix-forms-api-openapi.yml
+  - type: Documentation
+    url: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  - type: APIReference
+    url: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  - type: GettingStarted
+    url: https://help.weavix.com/hc/en-us/articles/45825355414669-Weavix-API-s
+- aid: weavix:weavix-geofences-api
+  name: Weavix Geofences API
+  description: The Geofences API from Weavix — 1 operation(s) for geofences.
+  humanURL: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  baseURL: https://api.weavix.com
+  tags:
+  - Geofences
+  properties:
+  - type: OpenAPI
+    url: openapi/weavix-geofences-api-openapi.yml
+  - type: Documentation
+    url: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  - type: APIReference
+    url: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  - type: GettingStarted
+    url: https://help.weavix.com/hc/en-us/articles/45825355414669-Weavix-API-s
+- aid: weavix:weavix-mass-alerts-api
+  name: Weavix Mass Alerts API
+  description: The Mass Alerts API from Weavix — 2 operation(s) for mass alerts.
+  humanURL: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  baseURL: https://api.weavix.com
+  tags:
+  - Mass Alerts
+  properties:
+  - type: OpenAPI
+    url: openapi/weavix-mass-alerts-api-openapi.yml
+  - type: Documentation
+    url: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  - type: APIReference
+    url: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  - type: GettingStarted
+    url: https://help.weavix.com/hc/en-us/articles/45825355414669-Weavix-API-s
+- aid: weavix:weavix-permission-groups-api
+  name: Weavix Permission Groups API
+  description: The Permission Groups API from Weavix — 1 operation(s) for permission groups.
+  humanURL: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  baseURL: https://api.weavix.com
+  tags:
+  - Permission Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/weavix-permission-groups-api-openapi.yml
+  - type: Documentation
+    url: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  - type: APIReference
+    url: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  - type: GettingStarted
+    url: https://help.weavix.com/hc/en-us/articles/45825355414669-Weavix-API-s
+- aid: weavix:weavix-sites-api
+  name: Weavix Sites API
+  description: The Sites API from Weavix — 1 operation(s) for sites.
+  humanURL: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  baseURL: https://api.weavix.com
+  tags:
+  - Sites
+  properties:
+  - type: OpenAPI
+    url: openapi/weavix-sites-api-openapi.yml
+  - type: Documentation
+    url: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  - type: APIReference
+    url: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  - type: GettingStarted
+    url: https://help.weavix.com/hc/en-us/articles/45825355414669-Weavix-API-s
+- aid: weavix:weavix-user-management-api
+  name: Weavix User Management API
+  description: The User Management API from Weavix — 5 operation(s) for user management.
+  humanURL: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  baseURL: https://api.weavix.com
+  tags:
+  - User Management
+  properties:
+  - type: OpenAPI
+    url: openapi/weavix-user-management-api-openapi.yml
+  - type: Documentation
+    url: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  - type: APIReference
+    url: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  - type: GettingStarted
+    url: https://help.weavix.com/hc/en-us/articles/45825355414669-Weavix-API-s
+common:
+- type: TrustCenter
+  url: security/weavix-trust-center.yml
+- type: DomainSecurity
+  url: security/weavix-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/weavix-agentic-access.yml
+- url: https://weavix.com/
+  type: Website
+- url: https://help.weavix.com/hc/en-us
+  type: DeveloperPortal
+- url: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  type: Documentation
+- url: https://help.weavix.com/hc/en-us/articles/45825355414669-Weavix-API-s
+  type: GettingStarted
+- url: https://help.weavix.com/hc/en-us
+  type: Support
+- url: https://weavix.com/blogs/
+  type: Blog
+- url: https://weavix.com/pricing/
+  type: Pricing
+- url: https://console.weavix.com
+  type: Login
+- url: https://weavix.com/request-demo/
+  type: SignUp
+- url: https://weavix.com/tos/
+  type: TermsOfService
+- url: https://weavix.com/privacy/
+  type: PrivacyPolicy
+- url: https://trust.weavix.com/
+  type: Compliance
+- url: authentication/weavix-authentication.yml
+  type: Authentication
+- url: conventions/weavix-conventions.yml
+  type: Conventions
+- url: errors/weavix-problem-types.yml
+  type: ErrorCatalog
+- url: lifecycle/weavix-lifecycle.yml
+  type: Lifecycle
+- url: changelog/weavix-changelog.yml
+  type: ChangeLog
+- url: mcp/weavix-mcp.yml
+  type: MCPServer
+- url: llms/weavix-llms.txt
+  type: LLMsTxt
+- url: data-model/weavix-data-model.yml
+  type: DataModel
+- url: conformance/weavix-conformance.yml
+  type: Conformance
+- url: asyncapi/weavix-webhooks.yml
+  type: Webhooks
+- url: skills/_index.yml
+  type: AgentSkill
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 17
+  pass: local-v1

@@ -1,0 +1,67 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/weavix-rest-openapi.yml
+notes: >-
+  No official hosted or published weavix MCP server was found. This is a
+  candidate tool surface derived one-to-one from the documented REST API
+  operations, to seed an MCP server that wraps the weavix API.
+server:
+  name: weavix
+  transport: http
+  url: null
+tools:
+- name: create_craft
+  description: Create a new craft with the specified name.
+  source_operation: openapi/weavix-rest-openapi.yml#createCraft
+- name: list_crafts
+  description: List all crafts on the account.
+  source_operation: openapi/weavix-rest-openapi.yml#listCrafts
+- name: list_geofences
+  description: List all geofences on the account.
+  source_operation: openapi/weavix-rest-openapi.yml#listGeofences
+- name: list_permission_groups
+  description: List all permission groups for a site.
+  source_operation: openapi/weavix-rest-openapi.yml#listPermissionGroups
+- name: list_sites
+  description: List all sites (facilities) on the account.
+  source_operation: openapi/weavix-rest-openapi.yml#listSites
+- name: list_users
+  description: List all users on the account.
+  source_operation: openapi/weavix-rest-openapi.yml#listUsers
+- name: get_user
+  description: Get a user's profile information.
+  source_operation: openapi/weavix-rest-openapi.yml#getUser
+- name: create_user
+  description: Add a new user to the account (pending activation).
+  source_operation: openapi/weavix-rest-openapi.yml#createUser
+- name: update_user
+  description: Update an existing user's information.
+  source_operation: openapi/weavix-rest-openapi.yml#updateUser
+- name: delete_user
+  description: Delete a user from the account.
+  source_operation: openapi/weavix-rest-openapi.yml#deleteUser
+- name: list_channels
+  description: List all admin-defined channels.
+  source_operation: openapi/weavix-rest-openapi.yml#listChannels
+- name: send_channel_message
+  description: Send a system message to an admin-defined channel.
+  source_operation: openapi/weavix-rest-openapi.yml#sendChannelMessage
+- name: search_channel_messages
+  description: Retrieve message history from a channel by date range and content type.
+  source_operation: openapi/weavix-rest-openapi.yml#searchChannelMessages
+- name: send_user_message
+  description: Send a message to an individual user.
+  source_operation: openapi/weavix-rest-openapi.yml#sendUserMessage
+- name: get_form_submissions
+  description: Retrieve all submissions for a specific form.
+  source_operation: openapi/weavix-rest-openapi.yml#getFormSubmissions
+- name: list_alert_types
+  description: List all available mass-alert types.
+  source_operation: openapi/weavix-rest-openapi.yml#listAlertTypes
+- name: send_mass_alert
+  description: Send a mass alert to a facility, optionally targeted by craft/geofence/on-site.
+  source_operation: openapi/weavix-rest-openapi.yml#sendMassAlert
+- name: list_facility_alerts
+  description: Get the history of alerts sent for a site.
+  source_operation: openapi/weavix-rest-openapi.yml#listFacilityAlerts

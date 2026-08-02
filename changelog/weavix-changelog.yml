@@ -1,0 +1,44 @@
+generated: '2026-07-21'
+method: searched
+source: https://help.weavix.com/hc/en-us
+notes: >-
+  weavix publishes dated release notes in its Help Center. Since 2025 these are
+  quarterly roll-ups (each covering several 5.x point releases); earlier notes
+  were per-minor. This captures the recent window; the Help Center is the source
+  of truth. Release notes describe the weavix platform (Console + walt) broadly,
+  not only the REST API.
+scheme: quarterly + semver-minor (5.x)
+current: '5.39'
+entries:
+- version: Q1 2026 (5.39)
+  date: '2026-03-24'
+  url: https://help.weavix.com/hc/en-us/articles/44545023977613-Q1-2026-Release-Notes
+  breaking: false
+  highlights:
+  - Language support added for Arabic (multiple dialects) and Tanzanian dialect of Swahili.
+  - Users can disable haptic feedback on walt when messages are received.
+  - Deleted users show in message history grayed out and labeled "(Deactivated)".
+- version: Q4 2025 (5.37-5.38)
+  date: '2025-12-22'
+  url: https://help.weavix.com/hc/en-us/articles/40213630012301-Q4-2025-Release-Notes
+  breaking: false
+  highlights:
+  - Added language support for Amharic.
+  - Walt login screen updated to focus on Tap & Go authentication.
+  - Improved filtered list functions in Console; multiple bug fixes.
+- version: Q3 2025 (5.33-5.36)
+  date: '2025-10-09'
+  url: https://help.weavix.com/hc/en-us/articles/37890975107085-Q3-2025-Release-Notes
+  breaking: false
+  highlights:
+  - Users can talk in an open channel while radio scan receives other channels.
+  - Console remembers the last viewed site across Live Look and Mass Alerts.
+  - Live Look user search spans all permitted sites.
+- version: Q2 2025 (5.26-5.32)
+  date: '2025-08-05'
+  url: https://help.weavix.com/hc/en-us/articles/36678967201037-Q2-2025-Release-Notes
+  breaking: false
+  highlights:
+  - All Spanish dialects available via Microsoft translation added to weavix.
+  - Email address capitalization ignored when recognizing existing users.
+  - Admin Defined Channel and translation bug fixes.

@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/weavix-rest-openapi.yml
+format: http-status
+notes: >-
+  weavix does not publish a dedicated error-code reference or an
+  application/problem+json (RFC 9457) envelope. This catalog captures the
+  standard HTTP status semantics for the REST API; the 401 was verified live
+  against api.weavix.com (every unauthenticated request returns 401).
+problems:
+- status: 401
+  title: Unauthorized
+  meaning: The Authorization token is missing, invalid, or API access is not enabled for the account.
+  remediation: >-
+    Include a valid Authorization token created in the weavix Console
+    (Configuration -> API Keys). If you have no API Keys section, ask your
+    weavix administrator or contact help@weavix.com to enable API access.
+  verified: live-probe api.weavix.com
+- status: 400
+  title: Bad Request
+  meaning: A required field is missing or the request body is malformed.
+  remediation: Check required fields (e.g. name, firstName, lastName, group, facilities, message, alertTypeId).
+- status: 404
+  title: Not Found
+  meaning: The referenced resource id (userId, facilityId, channelId, formId) does not exist.
+  remediation: List the parent collection to obtain valid ids before referencing them.

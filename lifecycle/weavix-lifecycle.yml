@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://help.weavix.com/hc/en-us/sections/12315785643789-FAQs
+versioning:
+  scheme: uri-path
+  current: v1
+  notes: >-
+    Newer endpoints (people, forms) are served under a /v1/core prefix; most
+    core/track endpoints remain unversioned path prefixes.
+  ref: conventions/weavix-conventions.yml
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No public deprecation policy or RFC 8594 Sunset/Deprecation header support is documented.
+sla:
+  url: null
+  uptime_target: null
+  notes: No public SLA or uptime commitment is published.
+status_page:
+  url: null
+  notes: No public status page was found (no status.weavix.com).
+release_notes:
+  cadence: quarterly (formerly per-minor 5.x)
+  url: https://help.weavix.com/hc/en-us
+  ref: changelog/weavix-changelog.yml
+deprecated_operations: []

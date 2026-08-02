@@ -1,0 +1,490 @@
+openapi: 3.1.0
+info:
+  title: weavix REST API
+  version: '1.0'
+  x-apievangelist-generated: '2026-07-21'
+  x-apievangelist-method: generated
+  x-apievangelist-source: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+  description: >-
+    The weavix REST API lets administrators automate actions in the weavix
+    "Internet of Workers" frontline communication platform from outside the
+    weavix system: manage crafts, sites (facilities), geofences, permission
+    groups, and users; send messages to admin-defined channels and individual
+    users; retrieve message history and form submissions; and trigger mass
+    alerts. Faithfully modeled by API Evangelist from weavix's published REST
+    API documentation (no vendor-published OpenAPI exists as of 2026-07-21).
+    Authentication uses an account API key passed as an Authorization token.
+  contact:
+    name: weavix Support
+    email: help@weavix.com
+    url: https://help.weavix.com/hc/en-us
+servers:
+  - url: https://api.weavix.com
+    description: weavix production API
+security:
+  - apiKeyAuth: []
+tags:
+  - name: Crafts
+  - name: Geofences
+  - name: Permission Groups
+  - name: Sites
+  - name: User Management
+  - name: Channels & Messaging
+  - name: Forms
+  - name: Mass Alerts
+paths:
+  /core/crafts:
+    post:
+      operationId: createCraft
+      tags: [Crafts]
+      summary: Create a craft
+      description: Creates a new craft with the specified name.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Craft created
+    get:
+      operationId: listCrafts
+      tags: [Crafts]
+      summary: Get a list of all crafts
+      description: Returns a list of all the crafts on your account. Use it to obtain the craftId for a specific craft.
+      responses:
+        '200':
+          description: A list of crafts
+  /track/geofences:
+    get:
+      operationId: listGeofences
+      tags: [Geofences]
+      summary: Get a list of all geofences
+      description: Returns a list of all the geofences on your account. Filter by facilityId to find geofences that belong to a site.
+      responses:
+        '200':
+          description: A list of geofences
+  /core/groups/{facilityId}:
+    get:
+      operationId: listPermissionGroups
+      tags: [Permission Groups]
+      summary: Get a list of all permission groups for a site
+      description: Returns a list of all the permission groups on the specified site. Use it to obtain the groupId for a specific permission group.
+      parameters:
+        - name: facilityId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of permission groups
+  /track/facilities:
+    get:
+      operationId: listSites
+      tags: [Sites]
+      summary: Get a list of all sites
+      description: Returns a list of all the sites (facilities) on your account. Use it to obtain the facilityId for a specific site.
+      responses:
+        '200':
+          description: A list of sites
+  /core/people/names:
+    get:
+      operationId: listUsers
+      tags: [User Management]
+      summary: Get a list of all users on the account
+      description: Returns a list of all the users on your account. Use it to obtain the userId for a specific user.
+      responses:
+        '200':
+          description: A list of users
+  /v1/core/people:
+    get:
+      operationId: listPeople
+      tags: [User Management]
+      summary: List people (v1)
+      description: Versioned (v1) listing of people on the account, as shown in the weavix getting-started example.
+      responses:
+        '200':
+          description: A list of people
+  /core/users/{id}:
+    get:
+      operationId: getUser
+      tags: [User Management]
+      summary: Get a user
+      description: Gets the user profile information of the specified user.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The user id of the user you wish to view.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The user profile
+  /core/people/{id}:
+    delete:
+      operationId: deleteUser
+      tags: [User Management]
+      summary: Delete a user
+      description: Deletes the specified user from your account.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The user id of the user you wish to delete.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User deleted
+    put:
+      operationId: updateUser
+      tags: [User Management]
+      summary: Update a user
+      description: >-
+        Updates an existing user on your account with the provided information.
+        Only the keys provided are updated, so you can update a single field.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The user id of the user you wish to edit.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdate'
+      responses:
+        '200':
+          description: User updated
+  /core/people/new-user:
+    post:
+      operationId: createUser
+      tags: [User Management]
+      summary: Add a user
+      description: >-
+        Creates a new user on your account with all the provided information.
+        The user is created but must still be activated after creation.
+        Required fields are firstName, lastName, group, and facilities (unless
+        the user is a global-admin).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+      responses:
+        '200':
+          description: User created (pending activation)
+  /core/channels:
+    get:
+      operationId: listChannels
+      tags: [Channels & Messaging]
+      summary: Get a list of all admin-defined channels
+      description: Returns a list of all the admin-defined channels on your account. Use it to obtain the channelId for a specific channel.
+      responses:
+        '200':
+          description: A list of admin-defined channels
+  /api/{channelId}/message:
+    post:
+      operationId: sendChannelMessage
+      tags: [Channels & Messaging]
+      summary: Send a message to an admin-defined channel
+      description: Sends a message to a specific channel that appears to a user as a system message.
+      parameters:
+        - name: channelId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                message:
+                  type: string
+                  description: The message to send to the channel (required).
+                senderName:
+                  type: string
+                  description: Display name for the sender. Defaults to "weavix Integrations" if omitted.
+                readAloud:
+                  type: boolean
+                  description: If true, the message is read aloud when received on a walt.
+      responses:
+        '200':
+          description: Message sent
+  /external/channels/{channelId}/messages/search:
+    post:
+      operationId: searchChannelMessages
+      tags: [Channels & Messaging]
+      summary: Get the messages from a channel
+      description: >-
+        Retrieves messages sent to a channel within the provided parameters.
+        Supports cursor pagination via the pageSize and next fields.
+      parameters:
+        - name: channelId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fromDate:
+                  type: string
+                  format: date-time
+                  description: Start of the timeframe (UTC, yyyy-mm-ddThh:mm:ssZ).
+                toDate:
+                  type: string
+                  format: date-time
+                  description: End of the timeframe (UTC, yyyy-mm-ddThh:mm:ssZ).
+                contentTypes:
+                  type: array
+                  description: Message types to pull. One or more of audio, image, video, file, link.
+                  items:
+                    type: string
+                    enum: [audio, image, video, file, link]
+                pageSize:
+                  type: integer
+                  description: Number of messages to return. Optional; default and maximum 1000.
+                  default: 1000
+                  maximum: 1000
+                next:
+                  type: string
+                  description: Pagination cursor returned by a previous response to fetch the next page.
+      responses:
+        '200':
+          description: A page of messages, with an optional next cursor
+  /api/admin/channel-message:
+    post:
+      operationId: sendUserMessage
+      tags: [Channels & Messaging]
+      summary: Send a message to an individual user
+      description: >-
+        Sends a message to a specific user. A channel is created with the user
+        and the message appears from the specified sender name.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [userId, message]
+              properties:
+                userId:
+                  type: string
+                  description: The id of the user to send the message to.
+                channelName:
+                  type: string
+                  description: The name of the channel created with the user.
+                message:
+                  type: string
+                  description: The message to send (required).
+                senderName:
+                  type: string
+                  description: Display name for the sender. Defaults to "weavix Integrations".
+                messageLanguage:
+                  type: string
+                  description: Two-digit ISO 639 language code for the message language.
+                readAloud:
+                  type: boolean
+                  description: If true, the message is read aloud when received on a walt.
+                mediaUrl:
+                  type: string
+                  description: Optional media to include with the message.
+                channelImageUrl:
+                  type: string
+                  description: Optional image used as the message profile avatar.
+                responseUrl:
+                  type: string
+                  description: >-
+                    Optional callback URL. If provided, when the user responds
+                    the transcript of their response is POSTed to this URL.
+      responses:
+        '200':
+          description: Message sent
+  /v1/core/forms/{formId}/submissions:
+    get:
+      operationId: getFormSubmissions
+      tags: [Forms]
+      summary: Get results from a specific form
+      description: >-
+        Retrieves all submissions for a specific form. Each result includes the
+        id of the submitting user, correlatable to a user via getUser.
+      parameters:
+        - name: formId
+          in: path
+          required: true
+          description: The form id, found at the end of the form URL in the weavix Console.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Form submissions
+  /core/alert-types:
+    get:
+      operationId: listAlertTypes
+      tags: [Mass Alerts]
+      summary: Get the types of alerts available
+      description: Returns a list of all available alert types. You need the id of an alert type to trigger it.
+      responses:
+        '200':
+          description: A list of alert types
+  /track/facility-alerts/{facilityId}:
+    post:
+      operationId: sendMassAlert
+      tags: [Mass Alerts]
+      summary: Send a mass alert
+      description: >-
+        Sends a mass alert for a facility. The message is read aloud on walts
+        and translated into each user's set language. Optionally target by
+        crafts, on-site presence, specific facilities, or geofences.
+      parameters:
+        - name: facilityId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [alertTypeId, message]
+              properties:
+                alertTypeId:
+                  type: string
+                  description: The id of the alert type to invoke.
+                crafts:
+                  type: array
+                  description: Optional crafts to target. Users only receive the alert if they belong to a selected craft.
+                  items:
+                    type: string
+                message:
+                  type: string
+                  description: The text to send in the alert (read aloud and translated on walts).
+                location:
+                  type: object
+                  properties:
+                    currentlyIn:
+                      type: boolean
+                      description: If true, only send to users currently on the selected site.
+                    facilityIds:
+                      type: array
+                      items:
+                        type: string
+                    geofenceIds:
+                      type: array
+                      description: Optional geofences to target; only users reporting a location in one of these geofences are alerted.
+                      items:
+                        type: string
+      responses:
+        '200':
+          description: Mass alert sent
+    get:
+      operationId: listFacilityAlerts
+      tags: [Mass Alerts]
+      summary: Get history of all alerts at a site
+      description: Returns a list of all the alerts sent for the specified site.
+      parameters:
+        - name: facilityId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Alert history for the site
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Account API key passed as the Authorization request header. Keys are
+        created in the weavix Console under Configuration -> API Keys (Secret +
+        Authorization Token). Requests without a valid token receive 401.
+  schemas:
+    UserCreate:
+      type: object
+      required: [firstName, lastName, group]
+      properties:
+        folderId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        group:
+          type: string
+          description: 'Global admin: "global-admin" or "none".'
+        facilities:
+          type: array
+          items:
+            type: object
+            properties:
+              facilityId:
+                type: string
+              facilityGroup:
+                type: string
+                description: A permission group id, "global-admin", or "none".
+        crafts:
+          type: array
+          items:
+            type: string
+        locale:
+          type: string
+          description: Two-digit ISO 639 default language code. Defaults to "en".
+          default: en
+    UserUpdate:
+      type: object
+      properties:
+        folderId:
+          type: string
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        group:
+          type: string
+        sites:
+          type: array
+          items:
+            type: object
+            properties:
+              facilityId:
+                type: string
+              facilityGroup:
+                type: string
+        crafts:
+          type: array
+          items:
+            type: string
+        locale:
+          type: string
+          default: en

@@ -1,0 +1,30 @@
+# weavix
+
+> weavix is the "Internet of Workers" frontline communication and workforce productivity platform, built around walt, a purpose-built smart radio for industrial deskless workers. Its public REST API lets administrators automate the platform from outside systems: manage crafts, sites, geofences and permission groups; create and manage users; send messages to channels and individual users; retrieve message history and form submissions; and trigger mass alerts. Authentication uses an account API key sent in the Authorization header.
+
+## APIs
+
+- [weavix REST API Documentation](https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation): Full endpoint reference (base URL https://api.weavix.com).
+- [Getting Started with the weavix API](https://help.weavix.com/hc/en-us/articles/45825355414669-Weavix-API-s): How to enable API access and create an API key.
+
+## Specs
+
+- [OpenAPI (API Evangelist generated)](https://raw.githubusercontent.com/api-evangelist/weavix/refs/heads/main/openapi/weavix-rest-openapi.yml): OpenAPI 3.1 modeled from the published documentation.
+
+## Artifacts
+
+- [Authentication profile](https://raw.githubusercontent.com/api-evangelist/weavix/refs/heads/main/authentication/weavix-authentication.yml)
+- [API conventions](https://raw.githubusercontent.com/api-evangelist/weavix/refs/heads/main/conventions/weavix-conventions.yml)
+- [Error catalog](https://raw.githubusercontent.com/api-evangelist/weavix/refs/heads/main/errors/weavix-problem-types.yml)
+- [Data model](https://raw.githubusercontent.com/api-evangelist/weavix/refs/heads/main/data-model/weavix-data-model.yml)
+- [Webhooks](https://raw.githubusercontent.com/api-evangelist/weavix/refs/heads/main/asyncapi/weavix-webhooks.yml)
+- [Changelog](https://raw.githubusercontent.com/api-evangelist/weavix/refs/heads/main/changelog/weavix-changelog.yml)
+- [MCP tool surface (candidate)](https://raw.githubusercontent.com/api-evangelist/weavix/refs/heads/main/mcp/weavix-mcp.yml)
+- [Agent Skills](https://raw.githubusercontent.com/api-evangelist/weavix/refs/heads/main/skills/_index.yml)
+
+## Docs
+
+- [weavix Help Center](https://help.weavix.com/hc/en-us)
+- [Pricing](https://weavix.com/pricing/)
+- [Trust Center](https://trust.weavix.com/)
+- [Blog](https://weavix.com/blogs/)

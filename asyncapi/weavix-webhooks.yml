@@ -1,0 +1,18 @@
+generated: '2026-07-21'
+method: searched
+source: https://help.weavix.com/hc/en-us/articles/23496154594573-weavix-REST-API-Documentation
+spec_type: Webhooks
+notes: >-
+  weavix does not publish an AsyncAPI document or a subscribable event catalog.
+  It does document one callback mechanism: when a message is sent to an
+  individual user with a responseUrl, the transcript of that user's reply is
+  POSTed back to the responseUrl. This captures that single documented webhook
+  callback. Do not treat this as a full event/streaming surface.
+webhooks:
+- name: message-response-transcript
+  trigger: A user replies to a message sent via sendUserMessage that included a responseUrl.
+  delivery: HTTP POST to the caller-supplied responseUrl.
+  payload: Transcript of the user's response.
+  configured_via:
+    operation: openapi/weavix-rest-openapi.yml#sendUserMessage
+    field: responseUrl

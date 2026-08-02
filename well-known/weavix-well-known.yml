@@ -1,0 +1,23 @@
+generated: '2026-07-21'
+method: searched
+source: live probes 2026-07-21
+notes: >-
+  No /.well-known/ discovery documents are published. The marketing host
+  weavix.com returns 404 for all probed paths; the API host api.weavix.com is
+  fully authentication-gated and returns 401 for every path including
+  /.well-known/*. Absence recorded as valid data.
+hosts:
+- host: https://api.weavix.com
+  documents:
+  - {path: /.well-known/security.txt, status: 401}
+  - {path: /.well-known/openid-configuration, status: 401}
+  - {path: /.well-known/oauth-authorization-server, status: 401}
+  - {path: /.well-known/api-catalog, status: 401}
+  - {path: /.well-known/ai-plugin.json, status: 401}
+- host: https://weavix.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}

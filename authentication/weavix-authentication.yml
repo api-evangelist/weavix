@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/weavix-rest-openapi.yml
+docs: https://help.weavix.com/hc/en-us/articles/45825355414669-Weavix-API-s
+notes: >-
+  API access must be enabled for the account (contact help@weavix.com). An API
+  key is created in the weavix Console under Configuration -> API Keys, which
+  issues a Secret and an Authorization Token. Every request must send the token
+  in the Authorization header (raw token, no Bearer prefix), e.g.
+  `curl -H "Authorization: YOUR_AUTHORIZATION_TOKEN" https://api.weavix.com/v1/core/people`.
+  Requests without a valid token receive HTTP 401.
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Account API key passed as the Authorization request header. Keys are created
+    in the weavix Console under Configuration -> API Keys (Secret + Authorization Token). Requests
+    without a valid token receive 401.
+  sources:
+  - openapi/weavix-rest-openapi.yml
