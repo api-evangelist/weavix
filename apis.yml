@@ -180,6 +180,8 @@ apis:
   - type: GettingStarted
     url: https://help.weavix.com/hc/en-us/articles/45825355414669-Weavix-API-s
 common:
+- type: Overlay
+  url: overlays/weavix-rest-overlay.yaml
 - type: TrustCenter
   url: security/weavix-trust-center.yml
 - type: DomainSecurity
