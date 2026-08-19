@@ -1,0 +1,440 @@
+{
+  "item": [
+    {
+      "id": "cf3b1736-24df-48aa-9feb-1fc12634315d",
+      "name": "Channels & Messaging",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "059a1d6b-0a73-4283-a776-b758bf925ba5",
+          "name": "Get a list of all admin-defined channels",
+          "request": {
+            "name": "Get a list of all admin-defined channels",
+            "description": {
+              "content": "Returns a list of all the admin-defined channels on your account. Use it to obtain the channelId for a specific channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "channels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6db136a3-a0eb-4bfb-bb20-b3951d39b358",
+              "name": "A list of admin-defined channels",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2417dfda-8534-4f6e-9dee-beb4383f310f",
+          "name": "Send a message to an admin-defined channel",
+          "request": {
+            "name": "Send a message to an admin-defined channel",
+            "description": {
+              "content": "Sends a message to a specific channel that appears to a user as a system message.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                ":channelId",
+                "message"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"<string>\",\n  \"senderName\": \"<string>\",\n  \"readAloud\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3a13ea63-0928-4a94-9014-f627b55c32f9",
+              "name": "Message sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":channelId",
+                    "message"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"<string>\",\n  \"senderName\": \"<string>\",\n  \"readAloud\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69bcebfa-e87c-44b0-b7f1-0f987e6258ba",
+          "name": "Get the messages from a channel",
+          "request": {
+            "name": "Get the messages from a channel",
+            "description": {
+              "content": "Retrieves messages sent to a channel within the provided parameters. Supports cursor pagination via the pageSize and next fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external",
+                "channels",
+                ":channelId",
+                "messages",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fromDate\": \"<dateTime>\",\n  \"toDate\": \"<dateTime>\",\n  \"contentTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pageSize\": 1000,\n  \"next\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e4cfee54-85c5-4988-8f6d-8c8a69080731",
+              "name": "A page of messages, with an optional next cursor",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external",
+                    "channels",
+                    ":channelId",
+                    "messages",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fromDate\": \"<dateTime>\",\n  \"toDate\": \"<dateTime>\",\n  \"contentTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pageSize\": 1000,\n  \"next\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d319a953-e770-4976-ac40-eedb45c9763d",
+          "name": "Send a message to an individual user",
+          "request": {
+            "name": "Send a message to an individual user",
+            "description": {
+              "content": "Sends a message to a specific user. A channel is created with the user and the message appears from the specified sender name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "admin",
+                "channel-message"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"<string>\",\n  \"message\": \"<string>\",\n  \"channelName\": \"<string>\",\n  \"senderName\": \"<string>\",\n  \"messageLanguage\": \"<string>\",\n  \"readAloud\": \"<boolean>\",\n  \"mediaUrl\": \"<string>\",\n  \"channelImageUrl\": \"<string>\",\n  \"responseUrl\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5823a257-9dad-4068-b1c7-7c31a474cb92",
+              "name": "Message sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "admin",
+                    "channel-message"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userId\": \"<string>\",\n  \"message\": \"<string>\",\n  \"channelName\": \"<string>\",\n  \"senderName\": \"<string>\",\n  \"messageLanguage\": \"<string>\",\n  \"readAloud\": \"<boolean>\",\n  \"mediaUrl\": \"<string>\",\n  \"channelImageUrl\": \"<string>\",\n  \"responseUrl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.weavix.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5c32114c-c9b5-46a7-888e-ab3d0de24ccc",
+    "name": "weavix REST Channels & Messaging API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The weavix REST API lets administrators automate actions in the weavix \"Internet of Workers\" frontline communication platform from outside the weavix system: manage crafts, sites (facilities), geofences, permission groups, and users; send messages to admin-defined channels and individual users; retrieve message history and form submissions; and trigger mass alerts. Faithfully modeled by API Evangelist from weavix's published REST API documentation (no vendor-published OpenAPI exists as of 2026-07-21). Authentication uses an account API key passed as an Authorization token.\n\nContact Support:\n Name: weavix Support\n Email: help@weavix.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "weavix REST Channels & Messaging Mass Alerts API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Mass Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the types of alerts available",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weavix.com/core/alert-types"
+          },
+          "docs": "Returns a list of all available alert types. You need the id of an alert type to trigger it."
+        },
+        {
+          "info": {
+            "name": "Get history of all alerts at a site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weavix.com/track/facility-alerts/:facilityId",
+            "params": [
+              {
+                "name": "facilityId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a list of all the alerts sent for the specified site."
+        },
+        {
+          "info": {
+            "name": "Send a mass alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.weavix.com/track/facility-alerts/:facilityId",
+            "params": [
+              {
+                "name": "facilityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a mass alert for a facility. The message is read aloud on walts and translated into each user's set language. Optionally target by crafts, on-site presence, specific facilities, or geofences."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

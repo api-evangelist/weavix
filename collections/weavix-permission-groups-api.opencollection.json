@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "weavix REST Channels & Messaging Permission Groups API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Permission Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of all permission groups for a site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weavix.com/core/groups/:facilityId",
+            "params": [
+              {
+                "name": "facilityId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a list of all the permission groups on the specified site. Use it to obtain the groupId for a specific permission group."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

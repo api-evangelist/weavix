@@ -2,10 +2,8 @@ generated: '2026-07-21'
 method: derived
 status: candidate
 source: openapi/weavix-rest-openapi.yml
-notes: >-
-  No official hosted or published weavix MCP server was found. This is a
-  candidate tool surface derived one-to-one from the documented REST API
-  operations, to seed an MCP server that wraps the weavix API.
+notes: No official hosted or published weavix MCP server was found. This is a candidate tool surface derived
+  one-to-one from the documented REST API operations, to seed an MCP server that wraps the weavix API.
 server:
   name: weavix
   transport: http
@@ -65,3 +63,9 @@ tools:
 - name: list_facility_alerts
   description: Get the history of alerts sent for a site.
   source_operation: openapi/weavix-rest-openapi.yml#listFacilityAlerts
+deployment:
+  mode: none
+  verified: derived
+  tools: 18
+  checked: '2026-08-12'
+  source: catalog MCP census

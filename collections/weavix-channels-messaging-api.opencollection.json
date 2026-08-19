@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "weavix REST Channels & Messaging API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Channels & Messaging",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of all admin-defined channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weavix.com/core/channels"
+          },
+          "docs": "Returns a list of all the admin-defined channels on your account. Use it to obtain the channelId for a specific channel."
+        },
+        {
+          "info": {
+            "name": "Send a message to an admin-defined channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.weavix.com/api/:channelId/message",
+            "params": [
+              {
+                "name": "channelId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a message to a specific channel that appears to a user as a system message."
+        },
+        {
+          "info": {
+            "name": "Get the messages from a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.weavix.com/external/channels/:channelId/messages/search",
+            "params": [
+              {
+                "name": "channelId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves messages sent to a channel within the provided parameters. Supports cursor pagination via the pageSize and next fields."
+        },
+        {
+          "info": {
+            "name": "Send a message to an individual user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.weavix.com/api/admin/channel-message",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a message to a specific user. A channel is created with the user and the message appears from the specified sender name."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,141 @@
+{
+  "item": [
+    {
+      "id": "b6e2d811-5330-4b17-9e9a-546c3cfed973",
+      "name": "Forms",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c1223b5f-bb87-4625-a9ac-63ca770fba08",
+          "name": "Get results from a specific form",
+          "request": {
+            "name": "Get results from a specific form",
+            "description": {
+              "content": "Retrieves all submissions for a specific form. Each result includes the id of the submitting user, correlatable to a user via getUser.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "core",
+                "forms",
+                ":formId",
+                "submissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "formId",
+                  "description": "(Required) The form id, found at the end of the form URL in the weavix Console."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60b75634-f953-4327-88ee-5b8c7d1c570d",
+              "name": "Form submissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "core",
+                    "forms",
+                    ":formId",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formId",
+                      "description": "(Required) The form id, found at the end of the form URL in the weavix Console."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.weavix.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a86e07c9-1b88-4d63-96df-eabe0c76e42d",
+    "name": "weavix REST Channels & Messaging Forms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The weavix REST API lets administrators automate actions in the weavix \"Internet of Workers\" frontline communication platform from outside the weavix system: manage crafts, sites (facilities), geofences, permission groups, and users; send messages to admin-defined channels and individual users; retrieve message history and form submissions; and trigger mass alerts. Faithfully modeled by API Evangelist from weavix's published REST API documentation (no vendor-published OpenAPI exists as of 2026-07-21). Authentication uses an account API key passed as an Authorization token.\n\nContact Support:\n Name: weavix Support\n Email: help@weavix.com",
+      "type": "text/plain"
+    }
+  }
+}

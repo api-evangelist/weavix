@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "weavix REST Channels & Messaging User Management API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of all users on the account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weavix.com/core/people/names"
+          },
+          "docs": "Returns a list of all the users on your account. Use it to obtain the userId for a specific user."
+        },
+        {
+          "info": {
+            "name": "List people (v1)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weavix.com/v1/core/people"
+          },
+          "docs": "Versioned (v1) listing of people on the account, as shown in the weavix getting-started example."
+        },
+        {
+          "info": {
+            "name": "Get a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weavix.com/core/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The user id of the user you wish to view."
+              }
+            ]
+          },
+          "docs": "Gets the user profile information of the specified user."
+        },
+        {
+          "info": {
+            "name": "Update a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.weavix.com/core/people/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The user id of the user you wish to edit."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing user on your account with the provided information. Only the keys provided are updated, so you can update a single field."
+        },
+        {
+          "info": {
+            "name": "Delete a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.weavix.com/core/people/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The user id of the user you wish to delete."
+              }
+            ]
+          },
+          "docs": "Deletes the specified user from your account."
+        },
+        {
+          "info": {
+            "name": "Add a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.weavix.com/core/people/new-user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new user on your account with all the provided information. The user is created but must still be activated after creation. Required fields are firstName, lastName, group, and facilities (unless the user is a global-admin)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

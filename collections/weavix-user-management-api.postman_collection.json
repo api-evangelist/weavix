@@ -1,0 +1,575 @@
+{
+  "item": [
+    {
+      "id": "d4b9053e-27cf-4d5b-b58d-37f0ee751972",
+      "name": "User Management",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bf4ac57d-1a99-432a-ba08-041c49dfb91f",
+          "name": "Get a list of all users on the account",
+          "request": {
+            "name": "Get a list of all users on the account",
+            "description": {
+              "content": "Returns a list of all the users on your account. Use it to obtain the userId for a specific user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "people",
+                "names"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd3170af-d26b-4ac9-9517-2decbee86f4a",
+              "name": "A list of users",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "people",
+                    "names"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1fc01b0-04be-40f2-8de2-580a8cc2818d",
+          "name": "List people (v1)",
+          "request": {
+            "name": "List people (v1)",
+            "description": {
+              "content": "Versioned (v1) listing of people on the account, as shown in the weavix getting-started example.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "core",
+                "people"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f7e5906-a18d-4d6d-a745-4c50067a8768",
+              "name": "A list of people",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "core",
+                    "people"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dad9f15e-db2c-4ec1-a9b9-f425ae8682b3",
+          "name": "Get a user",
+          "request": {
+            "name": "Get a user",
+            "description": {
+              "content": "Gets the user profile information of the specified user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The user id of the user you wish to view."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ad0c6d0-dd7a-49f8-a942-4acc1e5a89ec",
+              "name": "The user profile",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The user id of the user you wish to view."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e96b4d5-7773-418b-9102-65fe45893480",
+          "name": "Delete a user",
+          "request": {
+            "name": "Delete a user",
+            "description": {
+              "content": "Deletes the specified user from your account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "people",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The user id of the user you wish to delete."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5f802dfe-fe5f-4052-8d1c-6237ab1b47fc",
+              "name": "User deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "people",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The user id of the user you wish to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91bf927d-cce5-4e4d-ae36-c44582790e5b",
+          "name": "Update a user",
+          "request": {
+            "name": "Update a user",
+            "description": {
+              "content": "Updates an existing user on your account with the provided information. Only the keys provided are updated, so you can update a single field.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "people",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The user id of the user you wish to edit."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"folderId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"middleName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"group\": \"<string>\",\n  \"sites\": [\n    {\n      \"facilityId\": \"<string>\",\n      \"facilityGroup\": \"<string>\"\n    },\n    {\n      \"facilityId\": \"<string>\",\n      \"facilityGroup\": \"<string>\"\n    }\n  ],\n  \"crafts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"locale\": \"en\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a4bc5ff6-72fb-493d-8a2a-7eb77cc283ef",
+              "name": "User updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "people",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The user id of the user you wish to edit."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"folderId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"middleName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"group\": \"<string>\",\n  \"sites\": [\n    {\n      \"facilityId\": \"<string>\",\n      \"facilityGroup\": \"<string>\"\n    },\n    {\n      \"facilityId\": \"<string>\",\n      \"facilityGroup\": \"<string>\"\n    }\n  ],\n  \"crafts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"locale\": \"en\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fac0a78f-e097-4f9d-8670-05970c064084",
+          "name": "Add a user",
+          "request": {
+            "name": "Add a user",
+            "description": {
+              "content": "Creates a new user on your account with all the provided information. The user is created but must still be activated after creation. Required fields are firstName, lastName, group, and facilities (unless the user is a global-admin).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "people",
+                "new-user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"group\": \"<string>\",\n  \"folderId\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"facilities\": [\n    {\n      \"facilityId\": \"<string>\",\n      \"facilityGroup\": \"<string>\"\n    },\n    {\n      \"facilityId\": \"<string>\",\n      \"facilityGroup\": \"<string>\"\n    }\n  ],\n  \"crafts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"locale\": \"en\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "57d1c96b-f941-48c8-ad80-2839c44b1786",
+              "name": "User created (pending activation)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "people",
+                    "new-user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"group\": \"<string>\",\n  \"folderId\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"facilities\": [\n    {\n      \"facilityId\": \"<string>\",\n      \"facilityGroup\": \"<string>\"\n    },\n    {\n      \"facilityId\": \"<string>\",\n      \"facilityGroup\": \"<string>\"\n    }\n  ],\n  \"crafts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"locale\": \"en\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.weavix.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4058394f-f75d-4442-9e5a-ac46348c9cd9",
+    "name": "weavix REST Channels & Messaging User Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The weavix REST API lets administrators automate actions in the weavix \"Internet of Workers\" frontline communication platform from outside the weavix system: manage crafts, sites (facilities), geofences, permission groups, and users; send messages to admin-defined channels and individual users; retrieve message history and form submissions; and trigger mass alerts. Faithfully modeled by API Evangelist from weavix's published REST API documentation (no vendor-published OpenAPI exists as of 2026-07-21). Authentication uses an account API key passed as an Authorization token.\n\nContact Support:\n Name: weavix Support\n Email: help@weavix.com",
+      "type": "text/plain"
+    }
+  }
+}

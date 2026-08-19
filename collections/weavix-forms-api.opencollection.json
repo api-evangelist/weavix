@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "weavix REST Channels & Messaging Forms API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Forms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get results from a specific form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weavix.com/v1/core/forms/:formId/submissions",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path",
+                "description": "The form id, found at the end of the form URL in the weavix Console."
+              }
+            ]
+          },
+          "docs": "Retrieves all submissions for a specific form. Each result includes the id of the submitting user, correlatable to a user via getUser."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

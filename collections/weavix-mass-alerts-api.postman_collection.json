@@ -1,0 +1,318 @@
+{
+  "item": [
+    {
+      "id": "440969ca-e72c-427b-bca0-9da5db2ae2f2",
+      "name": "Mass Alerts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b994d7db-f8dd-4563-9378-a2b49564392d",
+          "name": "Get the types of alerts available",
+          "request": {
+            "name": "Get the types of alerts available",
+            "description": {
+              "content": "Returns a list of all available alert types. You need the id of an alert type to trigger it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "core",
+                "alert-types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf53e3f3-e1af-411c-82da-fd71c8cdb886",
+              "name": "A list of alert types",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "alert-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56f6b69e-05e4-4ab4-ab19-3952bde522b0",
+          "name": "Send a mass alert",
+          "request": {
+            "name": "Send a mass alert",
+            "description": {
+              "content": "Sends a mass alert for a facility. The message is read aloud on walts and translated into each user's set language. Optionally target by crafts, on-site presence, specific facilities, or geofences.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "track",
+                "facility-alerts",
+                ":facilityId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "facilityId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"alertTypeId\": \"<string>\",\n  \"message\": \"<string>\",\n  \"crafts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"location\": {\n    \"currentlyIn\": \"<boolean>\",\n    \"facilityIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"geofenceIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bd050780-334c-4148-99c6-f6857f733dc1",
+              "name": "Mass alert sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "track",
+                    "facility-alerts",
+                    ":facilityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "facilityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertTypeId\": \"<string>\",\n  \"message\": \"<string>\",\n  \"crafts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"location\": {\n    \"currentlyIn\": \"<boolean>\",\n    \"facilityIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"geofenceIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ed2b963-2ed2-4fcf-bd24-f6c1e6a4efbb",
+          "name": "Get history of all alerts at a site",
+          "request": {
+            "name": "Get history of all alerts at a site",
+            "description": {
+              "content": "Returns a list of all the alerts sent for the specified site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "track",
+                "facility-alerts",
+                ":facilityId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "facilityId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf6dab5c-38e1-43d4-86d5-4bf6da76103c",
+              "name": "Alert history for the site",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "track",
+                    "facility-alerts",
+                    ":facilityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "facilityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.weavix.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "56b228bc-a580-44a7-a2cb-c33167ad1b13",
+    "name": "weavix REST Channels & Messaging Mass Alerts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The weavix REST API lets administrators automate actions in the weavix \"Internet of Workers\" frontline communication platform from outside the weavix system: manage crafts, sites (facilities), geofences, permission groups, and users; send messages to admin-defined channels and individual users; retrieve message history and form submissions; and trigger mass alerts. Faithfully modeled by API Evangelist from weavix's published REST API documentation (no vendor-published OpenAPI exists as of 2026-07-21). Authentication uses an account API key passed as an Authorization token.\n\nContact Support:\n Name: weavix Support\n Email: help@weavix.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "weavix REST Channels & Messaging Crafts API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Crafts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of all crafts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.weavix.com/core/crafts"
+          },
+          "docs": "Returns a list of all the crafts on your account. Use it to obtain the craftId for a specific craft."
+        },
+        {
+          "info": {
+            "name": "Create a craft",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.weavix.com/core/crafts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new craft with the specified name."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
