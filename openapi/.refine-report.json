@@ -1,14 +1,7 @@
 {
   "provider": "weavix",
   "sources": [
-    "weavix-channels-messaging-api-openapi.yml",
-    "weavix-crafts-api-openapi.yml",
-    "weavix-forms-api-openapi.yml",
-    "weavix-geofences-api-openapi.yml",
-    "weavix-mass-alerts-api-openapi.yml",
-    "weavix-permission-groups-api-openapi.yml",
-    "weavix-sites-api-openapi.yml",
-    "weavix-user-management-api-openapi.yml"
+    "_original/weavix-rest-openapi.yml"
   ],
   "outputs": [
     "weavix-channels-messaging-api-openapi.yml",
@@ -23,6 +16,19 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "weavix-rest-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "weavix-channels-messaging-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "weavix-crafts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "weavix-forms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "weavix-geofences-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "weavix-mass-alerts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "weavix-permission-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "weavix-sites-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "weavix-user-management-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
