@@ -112,35 +112,6 @@ paths:
           description: User created (pending activation)
 components:
   schemas:
-    UserUpdate:
-      type: object
-      properties:
-        folderId:
-          type: string
-        firstName:
-          type: string
-        middleName:
-          type: string
-        lastName:
-          type: string
-        group:
-          type: string
-        sites:
-          type: array
-          items:
-            type: object
-            properties:
-              facilityId:
-                type: string
-              facilityGroup:
-                type: string
-        crafts:
-          type: array
-          items:
-            type: string
-        locale:
-          type: string
-          default: en
     UserCreate:
       type: object
       required:
@@ -178,6 +149,35 @@ components:
         locale:
           type: string
           description: Two-digit ISO 639 default language code. Defaults to "en".
+          default: en
+    UserUpdate:
+      type: object
+      properties:
+        folderId:
+          type: string
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        group:
+          type: string
+        sites:
+          type: array
+          items:
+            type: object
+            properties:
+              facilityId:
+                type: string
+              facilityGroup:
+                type: string
+        crafts:
+          type: array
+          items:
+            type: string
+        locale:
+          type: string
           default: en
   securitySchemes:
     apiKeyAuth:
