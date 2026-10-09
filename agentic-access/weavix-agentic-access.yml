@@ -1,20 +1,78 @@
-generated: '2026-07-21'
+generated: '2026-09-23'
 method: generated
-source: openapi/weavix-rest-openapi.yml
+source: openapi/weavix-channels-messaging-api-openapi.yml, openapi/weavix-crafts-api-openapi.yml,
+  openapi/weavix-forms-api-openapi.yml, openapi/weavix-geofences-api-openapi.yml, openapi/weavix-mass-alerts-api-openapi.yml,
+  openapi/weavix-permission-groups-api-openapi.yml, openapi/weavix-sites-api-openapi.yml, openapi/weavix-user-management-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 19
   by_action_class:
-    acting: 8
-    connected: 11
+    connected: 12
+    acting: 7
   by_consequence:
-    write: 5
-    read: 11
+    read: 12
     physical: 3
+    write: 4
   human_in_the_loop_required: 0
 operations:
+- path: /core/channels
+  method: get
+  operationId: listChannels
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/{channelId}/message
+  method: post
+  operationId: sendChannelMessage
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /external/channels/{channelId}/messages/search
+  method: post
+  operationId: searchChannelMessages
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/admin/channel-message
+  method: post
+  operationId: sendUserMessage
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /core/crafts
   method: post
   operationId: createCraft
@@ -41,9 +99,57 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /v1/core/forms/{formId}/submissions
+  method: get
+  operationId: getFormSubmissions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /track/geofences
   method: get
   operationId: listGeofences
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /core/alert-types
+  method: get
+  operationId: listAlertTypes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /track/facility-alerts/{facilityId}
+  method: post
+  operationId: sendMassAlert
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /track/facility-alerts/{facilityId}
+  method: get
+  operationId: listFacilityAlerts
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -149,113 +255,3 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /core/channels
-  method: get
-  operationId: listChannels
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/{channelId}/message
-  method: post
-  operationId: sendChannelMessage
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /external/channels/{channelId}/messages/search
-  method: post
-  operationId: searchChannelMessages
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/admin/channel-message
-  method: post
-  operationId: sendUserMessage
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/core/forms/{formId}/submissions
-  method: get
-  operationId: getFormSubmissions
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /core/alert-types
-  method: get
-  operationId: listAlertTypes
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /track/facility-alerts/{facilityId}
-  method: post
-  operationId: sendMassAlert
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /track/facility-alerts/{facilityId}
-  method: get
-  operationId: listFacilityAlerts
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
